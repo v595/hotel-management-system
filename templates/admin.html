@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard – Luxury Hotel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">Luxury Hotel</a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/rooms">Rooms</a></li>
+            <li><a href="/booking">Booking</a></li>
+            <li><a href="/admin">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <div class="admin-page">
+
+        <div class="admin-topbar">
+            <div>
+                <h1 class="admin-title">Hotel Dashboard</h1>
+                <p class="admin-subtitle">Manage and review all bookings</p>
+            </div>
+            <a href="/booking" class="btn">+ New Booking</a>
+        </div>
+
+        <div class="admin-stats">
+            <div class="admin-stat-card">
+                <div class="stat-n">{{ bookings | length }}</div>
+                <div class="stat-l">Total Bookings</div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="stat-n">3</div>
+                <div class="stat-l">Room Types</div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="stat-n">₹7k</div>
+                <div class="stat-l">Top Room Price</div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="stat-n">24/7</div>
+                <div class="stat-l">Support</div>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+
+            <div class="table-head-row">
+                <h3>All Bookings</h3>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Room</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Guests</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.id }}</td>
+                        <td>{{ booking.name }}</td>
+                        <td>{{ booking.email }}</td>
+                        <td>{{ booking.phone }}</td>
+                        <td><span class="room-badge">{{ booking.room_type }}</span></td>
+                        <td>{{ booking.checkin }}</td>
+                        <td>{{ booking.checkout }}</td>
+                        <td>{{ booking.guests }}</td>
+                        <td>
+                            <a href="/delete/{{ booking.id }}" class="delete-btn">
+                                🗑 Delete
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

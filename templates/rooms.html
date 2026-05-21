@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms – Luxury Hotel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">Luxury Hotel</a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/rooms">Rooms</a></li>
+            <li><a href="/booking">Booking</a></li>
+            <li><a href="/admin">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <div class="rooms-hero">
+        <div class="rooms-hero-text">
+            <p class="label">Accommodations</p>
+            <h1>Our Luxury Rooms</h1>
+        </div>
+    </div>
+
+    <div class="room-container">
+
+        <div class="card">
+            <div class="card-image-wrap">
+                <img class="card-image"
+                     src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop"
+                     alt="Single Room">
+            </div>
+            <div class="card-body">
+                <p class="card-tag">Standard</p>
+                <h2>Single Room</h2>
+                <div class="card-price">₹2,000 <span>/ Night</span></div>
+                <div class="card-amenities">
+                    <span class="amenity-tag">Free WiFi</span>
+                    <span class="amenity-tag">AC</span>
+                    <span class="amenity-tag">TV</span>
+                </div>
+                <a href="/booking" class="btn">Book Now</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrap">
+                <img class="card-image"
+                     src="https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=800&auto=format&fit=crop"
+                     alt="Double Room">
+            </div>
+            <div class="card-body">
+                <p class="card-tag">Comfort</p>
+                <h2>Double Room</h2>
+                <div class="card-price">₹4,000 <span>/ Night</span></div>
+                <div class="card-amenities">
+                    <span class="amenity-tag">Balcony</span>
+                    <span class="amenity-tag">AC</span>
+                    <span class="amenity-tag">TV</span>
+                </div>
+                <a href="/booking" class="btn">Book Now</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrap">
+                <img class="card-image"
+                     src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop"
+                     alt="Deluxe Room">
+            </div>
+            <div class="card-body">
+                <p class="card-tag">Premium</p>
+                <h2>Deluxe Room</h2>
+                <div class="card-price">₹7,000 <span>/ Night</span></div>
+                <div class="card-amenities">
+                    <span class="amenity-tag">Pool View</span>
+                    <span class="amenity-tag">Luxury Interior</span>
+                </div>
+                <a href="/booking" class="btn">Book Now</a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div>
+            <div class="footer-logo">Luxury Hotel</div>
+            <p>© 2026 Luxury Hotel. All Rights Reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/rooms">Rooms</a>
+            <a href="/booking">Booking</a>
+        </div>
+    </footer>
+
+</body>
+</html>

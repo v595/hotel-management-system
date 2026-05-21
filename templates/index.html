@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Hotel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">Luxury Hotel</a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/rooms">Rooms</a></li>
+            <li><a href="/booking">Booking</a></li>
+            <li><a href="/admin">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Welcome to Luxury Hotel</p>
+            <h1>Experience <em>Luxury</em> &amp; Comfort</h1>
+            <div class="hero-divider"></div>
+            <p>Book premium rooms with world-class hospitality and unforgettable experiences crafted for every guest.</p>
+            <div class="hero-buttons">
+                <a href="/booking" class="btn">Book Now</a>
+                <a href="/rooms" class="btn-secondary">Explore Rooms</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <span class="feature-icon">🛏️</span>
+            <h2>Luxury Rooms</h2>
+            <p>Spacious premium rooms with modern interiors, bespoke furnishings and elegant design curated for comfort.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🕐</span>
+            <h2>24 / 7 Service</h2>
+            <p>Professional staff available around the clock for customer support, concierge and personal assistance.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">✨</span>
+            <h2>Best Facilities</h2>
+            <p>Swimming pool, spa, free WiFi, fine-dining restaurant and a state-of-the-art fitness center.</p>
+        </div>
+    </section>
+
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-num">12+</div>
+            <div class="stat-label">Years of Excellence</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">48</div>
+            <div class="stat-label">Luxury Rooms</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">9.4</div>
+            <div class="stat-label">Guest Rating</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">20k+</div>
+            <div class="stat-label">Happy Guests</div>
+        </div>
+    </div>
+
+    <section class="about">
+        <div class="about-content">
+            <p class="about-label">Our Story</p>
+            <h1>About Our Hotel</h1>
+            <p>Luxury Hotel provides premium accommodation with modern facilities and exceptional customer experience. We focus on comfort, elegance and genuine hospitality for every guest who walks through our doors.</p>
+            <a href="/booking" class="btn">Reserve Your Stay</a>
+        </div>
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop" alt="Hotel Room">
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <div class="footer-logo">Luxury Hotel</div>
+            <p>© 2026 Luxury Hotel. All Rights Reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/rooms">Rooms</a>
+            <a href="/booking">Booking</a>
+            <a href="/admin">Dashboard</a>
+        </div>
+    </footer>
+
+</body>
+</html>
