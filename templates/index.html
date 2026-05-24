@@ -3,96 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Hotel</title>
+    <title>The Grand Aurum — Luxury Hotel</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="/" class="logo">Luxury Hotel</a>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/rooms">Rooms</a></li>
-            <li><a href="/booking">Booking</a></li>
-            <li><a href="/admin">Dashboard</a></li>
-        </ul>
-    </nav>
+<nav class="navbar">
+    <a href="/" class="logo">The Grand Aurum<span>Luxury Collection</span></a>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/rooms">Rooms</a></li>
+        <li><a href="/booking">Booking</a></li>
+        <li><a href="/admin">Dashboard</a></li>
+        <li><a href="/booking" class="nav-cta">Book Now</a></li>
+    </ul>
+</nav>
 
-    <section class="hero">
-        <div class="overlay"></div>
-        <div class="hero-content">
-            <p class="hero-eyebrow">Welcome to Luxury Hotel</p>
-            <h1>Experience <em>Luxury</em> &amp; Comfort</h1>
-            <div class="hero-divider"></div>
-            <p>Book premium rooms with world-class hospitality and unforgettable experiences crafted for every guest.</p>
-            <div class="hero-buttons">
-                <a href="/booking" class="btn">Book Now</a>
-                <a href="/rooms" class="btn-secondary">Explore Rooms</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="features">
-        <div class="feature-card">
-            <span class="feature-icon">🛏️</span>
-            <h2>Luxury Rooms</h2>
-            <p>Spacious premium rooms with modern interiors, bespoke furnishings and elegant design curated for comfort.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-icon">🕐</span>
-            <h2>24 / 7 Service</h2>
-            <p>Professional staff available around the clock for customer support, concierge and personal assistance.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-icon">✨</span>
-            <h2>Best Facilities</h2>
-            <p>Swimming pool, spa, free WiFi, fine-dining restaurant and a state-of-the-art fitness center.</p>
-        </div>
-    </section>
-
-    <div class="stats">
-        <div class="stat-item">
-            <div class="stat-num">12+</div>
-            <div class="stat-label">Years of Excellence</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-num">48</div>
-            <div class="stat-label">Luxury Rooms</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-num">9.4</div>
-            <div class="stat-label">Guest Rating</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-num">20k+</div>
-            <div class="stat-label">Happy Guests</div>
+<section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <p class="hero-eyebrow">Welcome to The Grand Aurum</p>
+        <h1>Experience <em>Luxury</em><br>&amp; Timeless <em>Elegance</em></h1>
+        <div class="hero-divider"></div>
+        <p>A sanctuary of refinement where every detail is curated for your absolute comfort. World-class hospitality in the heart of Mumbai.</p>
+        <div class="hero-buttons">
+            <a href="/booking" class="btn">Reserve Your Stay</a>
+            <a href="/rooms" class="btn-secondary">Explore Rooms</a>
         </div>
     </div>
+</section>
 
-    <section class="about">
-        <div class="about-content">
-            <p class="about-label">Our Story</p>
-            <h1>About Our Hotel</h1>
-            <p>Luxury Hotel provides premium accommodation with modern facilities and exceptional customer experience. We focus on comfort, elegance and genuine hospitality for every guest who walks through our doors.</p>
-            <a href="/booking" class="btn">Reserve Your Stay</a>
-        </div>
-        <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop" alt="Hotel Room">
-        </div>
-    </section>
+<!-- Quick Search -->
+<div class="quick-search">
+    <div class="qs-field"><div class="qs-label">Check In</div><input class="qs-input" type="date"></div>
+    <div class="qs-field"><div class="qs-label">Check Out</div><input class="qs-input" type="date"></div>
+    <div class="qs-field"><div class="qs-label">Room Type</div><select class="qs-input" style="background:transparent;border:none;color:var(--text-dark)"><option>Any Room</option><option>Classic Single Room</option><option>Superior Double Room</option><option>Deluxe Pool-View Room</option><option>Junior Suite</option><option>Grand Penthouse Suite</option></select></div>
+    <div class="qs-field" style="border-right:none"><div class="qs-label">Guests</div><input class="qs-input" type="number" placeholder="2" min="1" max="10"></div>
+    <button class="qs-btn" onclick="window.location.href='/rooms'">Search</button>
+</div>
 
-    <footer>
-        <div>
-            <div class="footer-logo">Luxury Hotel</div>
-            <p>© 2026 Luxury Hotel. All Rights Reserved.</p>
-        </div>
-        <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="/rooms">Rooms</a>
-            <a href="/booking">Booking</a>
-            <a href="/admin">Dashboard</a>
-        </div>
-    </footer>
+<section class="features">
+    <div class="feature-card"><span class="feature-icon">🛏️</span><h2>Luxury Rooms</h2><p>Spacious suites with bespoke furnishings, Italian marble baths and panoramic city views curated for your comfort.</p></div>
+    <div class="feature-card"><span class="feature-icon">🕐</span><h2>24/7 Concierge</h2><p>Dedicated personal service around the clock — from reservations to private transfers and exclusive experiences.</p></div>
+    <div class="feature-card"><span class="feature-icon">♨️</span><h2>Spa & Fine Dining</h2><p>Rejuvenate at our world-class spa and enjoy award-winning cuisine with an internationally curated menu.</p></div>
+</section>
+
+<div class="stats">
+    <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Years of Excellence</div></div>
+    <div class="stat-item"><div class="stat-num">64</div><div class="stat-label">Luxury Rooms</div></div>
+    <div class="stat-item"><div class="stat-num">9.7</div><div class="stat-label">Guest Rating</div></div>
+    <div class="stat-item"><div class="stat-num">30k+</div><div class="stat-label">Happy Guests</div></div>
+</div>
+
+<section class="amenities-strip">
+    <div class="amenities-row">
+        <div class="amenity-item"><span class="amenity-icon">🏊</span><span class="amenity-name">Infinity Pool</span></div>
+        <div class="amenity-item"><span class="amenity-icon">🧖</span><span class="amenity-name">Luxury Spa</span></div>
+        <div class="amenity-item"><span class="amenity-icon">🏋️</span><span class="amenity-name">Fitness Center</span></div>
+        <div class="amenity-item"><span class="amenity-icon">🍸</span><span class="amenity-name">Rooftop Bar</span></div>
+        <div class="amenity-item"><span class="amenity-icon">🚗</span><span class="amenity-name">Valet Parking</span></div>
+        <div class="amenity-item"><span class="amenity-icon">✈️</span><span class="amenity-name">Airport Transfer</span></div>
+        <div class="amenity-item"><span class="amenity-icon">📶</span><span class="amenity-name">High-Speed WiFi</span></div>
+        <div class="amenity-item"><span class="amenity-icon">🎭</span><span class="amenity-name">Event Spaces</span></div>
+        <div class="amenity-item"><span class="amenity-icon">🌿</span><span class="amenity-name">Garden Terrace</span></div>
+    </div>
+</section>
+
+<section class="gallery">
+    <p class="section-label">Our Hotel</p>
+    <h2 class="section-title">A Glimpse of Luxury</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=900&auto=format&fit=crop" alt="Pool"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=600&auto=format&fit=crop" alt="Room"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=600&auto=format&fit=crop" alt="Deluxe"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1590381105924-c72589b81ef1?q=80&w=600&auto=format&fit=crop" alt="Restaurant"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=600&auto=format&fit=crop" alt="Lobby"></div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <p class="section-label">Guest Reviews</p>
+    <h2 class="section-title">What Our Guests Say</h2>
+    <div class="testimonials-grid">
+        <div class="testi-card"><div class="quote-mark">"</div><div class="testi-stars">★★★★★</div><p class="testi-text">Absolutely breathtaking. The staff anticipated our every need. Pure perfection from check-in to checkout.</p><div class="testi-author"><div class="testi-avatar">R</div><div><div class="testi-name">Rahul Sharma</div><div class="testi-loc">Mumbai, India</div></div></div></div>
+        <div class="testi-card"><div class="quote-mark">"</div><div class="testi-stars">★★★★★</div><p class="testi-text">The Grand Suite exceeded every expectation. The views, the spa, the rooftop bar — our anniversary was unforgettable.</p><div class="testi-author"><div class="testi-avatar">P</div><div><div class="testi-name">Priya Mehta</div><div class="testi-loc">Delhi, India</div></div></div></div>
+        <div class="testi-card"><div class="quote-mark">"</div><div class="testi-stars">★★★★★</div><p class="testi-text">World-class in every sense. The fine dining restaurant alone is worth the visit. Genuinely delivers on its luxury promise.</p><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Arjun Kapoor</div><div class="testi-loc">Pune, India</div></div></div></div>
+    </div>
+</section>
+
+<section class="about">
+    <div class="about-content">
+        <p class="about-label">Our Legacy</p>
+        <h1>Crafting Unforgettable<br>Experiences Since 2010</h1>
+        <p>The Grand Aurum is more than a hotel — it's a destination. Every corner tells a story of craftsmanship, culture and genuine care for each guest.</p>
+        <p>From handpicked linens to curated local experiences, luxury lies in the details that often go unnoticed — until you're somewhere that truly cares.</p>
+        <a href="/booking" class="btn">Reserve Your Stay</a>
+    </div>
+    <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=900&auto=format&fit=crop" alt="Luxury Room">
+    </div>
+</section>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand"><div class="footer-logo">The Grand Aurum</div><p>A sanctuary of luxury and elegance. World-class hospitality crafted with genuine care for every guest.</p></div>
+        <div class="footer-col"><h4>Navigate</h4><a href="/">Home</a><a href="/rooms">Rooms</a><a href="/booking">Booking</a><a href="/admin">Dashboard</a></div>
+        <div class="footer-col"><h4>Experiences</h4><a>Fine Dining</a><a>Spa & Wellness</a><a>Rooftop Bar</a><a>Events & Weddings</a></div>
+        <div class="footer-col"><h4>Contact</h4><a>+91 98765 43210</a><a>reservations@grandaurum.com</a><a>Nariman Point, Mumbai</a><a>UPI: 9079296316@kotakbank</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 The Grand Aurum Luxury Hotel. All rights reserved.</p><p style="font-size:10px;color:rgba(240,213,176,0.25);letter-spacing:1px">PRIVACY · TERMS · SITEMAP</p></div>
+</footer>
 
 </body>
 </html>

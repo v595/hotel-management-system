@@ -3,64 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Your Room – Luxury Hotel</title>
+    <title>Book Your Room — The Grand Aurum</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="booking-page">
 
+<div class="booking-layout">
+    <!-- FORM -->
     <div class="form-container">
-
-        <p class="form-eyebrow">Luxury Hotel</p>
-        <h1>Book Your Room</h1>
+        <p class="form-eyebrow">The Grand Aurum</p>
+        <h1>Reserve Your Room</h1>
         <div class="form-divider"></div>
 
-        <form method="POST">
+        <form method="POST" onsubmit="return validateForm()">
 
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" name="name" placeholder="Enter your full name" required>
-            </div>
-
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" name="email" placeholder="Enter your email" required>
-            </div>
-
-            <div class="form-group">
-                <label>Phone Number</label>
-                <input type="text" name="phone" placeholder="Enter phone number" required>
-            </div>
-
-            <div class="form-group">
-                <label>Room Type</label>
-                <select name="room_type">
-                    <option>Single Room</option>
-                    <option>Double Room</option>
-                    <option>Deluxe Room</option>
-                </select>
-            </div>
-
+            <p class="form-section-title">Guest Information</p>
             <div class="form-row">
                 <div class="form-group">
-                    <label>Check In</label>
-                    <input type="date" name="checkin" required>
+                    <label>First Name *</label>
+                    <input type="text" name="name" id="fname" placeholder="Your full name" required>
                 </div>
                 <div class="form-group">
-                    <label>Check Out</label>
-                    <input type="date" name="checkout" required>
+                    <label>Last Name</label>
+                    <input type="text" name="lastname" placeholder="Last name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" name="email" id="femail" placeholder="your@email.com" inputmode="email" required>
+                <div class="field-error" id="email-error" style="font-size:11px;color:var(--red);margin-top:4px;display:none">Please enter a valid email address.</div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" name="phone" id="fphone" placeholder="+91 98765 43210" inputmode="tel" required>
+                    <div class="field-error" id="phone-error" style="font-size:11px;color:var(--red);margin-top:4px;display:none">Please enter a valid phone number (digits only).</div>
+                </div>
+                <div class="form-group">
+                    <label>Nationality</label>
+                    <input type="text" name="nationality" placeholder="Indian">
                 </div>
             </div>
 
+            <p class="form-section-title">Stay Details</p>
             <div class="form-group">
-                <label>Number of Guests</label>
-                <input type="number" name="guests" placeholder="e.g. 2" min="1" required>
+                <label>Room Type *</label>
+                <select name="room_type" id="froom" onchange="updatePrice()">
+                    <option value="Classic Single Room" {% if selected_room == 'Classic Single Room' %}selected{% endif %}>Classic Single Room — ₹2,500/night</option>
+                    <option value="Superior Double Room" {% if selected_room == 'Superior Double Room' %}selected{% endif %}>Superior Double Room — ₹4,500/night</option>
+                    <option value="Deluxe Pool-View Room" {% if selected_room == 'Deluxe Pool-View Room' %}selected{% endif %}>Deluxe Pool-View Room — ₹7,500/night</option>
+                    <option value="Junior Suite" {% if selected_room == 'Junior Suite' %}selected{% endif %}>Junior Suite — ₹12,000/night</option>
+                    <option value="Grand Penthouse Suite" {% if selected_room == 'Grand Penthouse Suite' %}selected{% endif %}>Grand Penthouse Suite — ₹35,000/night</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Check-In Date *</label>
+                    <input type="date" name="checkin" id="fcheckin" required onchange="updatePrice()">
+                </div>
+                <div class="form-group">
+                    <label>Check-Out Date *</label>
+                    <input type="date" name="checkout" id="fcheckout" required onchange="updatePrice()">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Number of Guests *</label>
+                    <input type="number" name="guests" placeholder="2" min="1" max="20" value="2" required>
+                </div>
+                <div class="form-group">
+                    <label>Arrival Time</label>
+                    <select name="arrival">
+                        <option>Before 12:00 PM</option>
+                        <option selected>12:00 PM – 3:00 PM</option>
+                        <option>3:00 PM – 6:00 PM</option>
+                        <option>After 6:00 PM</option>
+                    </select>
+                </div>
             </div>
 
-            <button type="submit" class="form-submit">Confirm Booking</button>
+            <p class="form-section-title">Preferences</p>
+            <div class="form-group">
+                <label>Meal Plan</label>
+                <select name="meal">
+                    <option value="Room Only">Room Only</option>
+                    <option value="Breakfast Included">Breakfast Included (+₹800/night)</option>
+                    <option value="Half Board">Half Board — Breakfast &amp; Dinner (+₹1,800/night)</option>
+                    <option value="Full Board">Full Board — All Meals (+₹2,800/night)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Special Requests</label>
+                <textarea name="requests" placeholder="Allergies, preferences, celebration arrangements, airport pickup..."></textarea>
+            </div>
 
+            <p class="form-section-title">Discount Coupon</p>
+            <div class="coupon-section">
+                <div class="coupon-title">🏷️ Apply Discount Coupon</div>
+                <div class="coupon-row">
+                    <input class="coupon-input" type="text" name="coupon" id="coupon-input" placeholder="Enter code (e.g. AURUM10)">
+                    <button type="button" class="coupon-btn" onclick="checkCoupon()">Apply</button>
+                </div>
+                <div class="coupon-msg" id="coupon-msg"></div>
+                <div style="font-size:10px;color:var(--text-light);margin-top:7px">Try: AURUM10 · GRAND15 · LUXURY20 · VIP25 · WELCOME5</div>
+            </div>
+
+            <button type="submit" class="form-submit">✦ Confirm Booking</button>
         </form>
-
     </div>
 
+    <!-- SIDEBAR -->
+    <div class="booking-sidebar">
+        <!-- UPI Banner -->
+        <div class="upi-banner">
+            <div class="upi-banner-icon">🏦</div>
+            <div class="upi-banner-text">
+                <div class="upi-banner-label">Official Payment UPI</div>
+                <div class="upi-banner-id">9079296316@kotakbank</div>
+            </div>
+        </div>
+
+        <!-- Price Summary -->
+        <div class="price-card">
+            <div class="price-card-title">Price Summary</div>
+            <img id="room-img" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=500&auto=format&fit=crop" style="width:100%;height:100px;object-fit:cover;border-radius:var(--radius);margin-bottom:10px">
+            <div id="room-name-preview" style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;margin-bottom:3px;color:var(--text-dark)">Classic Single Room</div>
+            <div id="room-info-preview" style="font-size:11px;color:var(--text-light);margin-bottom:12px">City View · 28 m²</div>
+            <div class="price-breakdown">
+                <div class="price-row"><span>Rate/night</span><span id="pr-rate">₹2,500</span></div>
+                <div class="price-row"><span>Nights</span><span id="pr-nights">—</span></div>
+                <div class="price-row"><span>Subtotal</span><span id="pr-sub">—</span></div>
+                <div class="price-row"><span>GST (18%)</span><span id="pr-tax">—</span></div>
+                <div class="price-row" id="pr-disc-row" style="color:var(--green);font-weight:600;display:none"><span>🏷️ Discount</span><span id="pr-disc">—</span></div>
+                <div class="price-row total"><span>Total</span><span id="pr-total">Select dates</span></div>
+            </div>
+        </div>
+
+        <div class="price-card" style="font-size:12px;color:var(--text-light);line-height:1.8">
+            <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:8px"><span style="color:var(--green);font-weight:700">✓</span><span>Free cancellation up to 48h before check-in</span></div>
+            <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:8px"><span style="color:var(--green);font-weight:700">✓</span><span>Instant WhatsApp &amp; Email confirmation</span></div>
+            <div style="display:flex;gap:7px;align-items:flex-start"><span style="color:var(--green);font-weight:700">✓</span><span>Best rate guaranteed</span></div>
+        </div>
+    </div>
+</div>
+
+<script>
+const ROOM_PRICES = {
+    'Classic Single Room': 2500,
+    'Superior Double Room': 4500,
+    'Deluxe Pool-View Room': 7500,
+    'Junior Suite': 12000,
+    'Grand Penthouse Suite': 35000
+};
+const ROOM_IMGS = {
+    'Classic Single Room': 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=500&auto=format&fit=crop',
+    'Superior Double Room': 'https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=500&auto=format&fit=crop',
+    'Deluxe Pool-View Room': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=500&auto=format&fit=crop',
+    'Junior Suite': 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=500&auto=format&fit=crop',
+    'Grand Penthouse Suite': 'https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=500&auto=format&fit=crop'
+};
+const ROOM_INFO = {
+    'Classic Single Room': 'City View · 28 m²',
+    'Superior Double Room': 'Garden View · 42 m²',
+    'Deluxe Pool-View Room': 'Pool View · 58 m²',
+    'Junior Suite': 'Skyline View · 82 m²',
+    'Grand Penthouse Suite': '360° Panorama · 320 m²'
+};
+const COUPONS = {'AURUM10':10,'GRAND15':15,'LUXURY20':20,'WELCOME5':5,'VIP25':25};
+let discountPct = 0;
+
+function fmt(n){ return '₹' + n.toLocaleString('en-IN'); }
+
+function updatePrice() {
+    const room = document.getElementById('froom').value;
+    const ci = document.getElementById('fcheckin').value;
+    const co = document.getElementById('fcheckout').value;
+    const price = ROOM_PRICES[room] || 2500;
+
+    document.getElementById('room-img').src = ROOM_IMGS[room] || '';
+    document.getElementById('room-name-preview').textContent = room;
+    document.getElementById('room-info-preview').textContent = ROOM_INFO[room] || '';
+    document.getElementById('pr-rate').textContent = fmt(price);
+
+    if (ci && co && ci < co) {
+        const nights = Math.ceil((new Date(co) - new Date(ci)) / 86400000);
+        const sub = nights * price;
+        const tax = Math.round(sub * 0.18);
+        const baseTotal = sub + tax;
+        const discAmt = discountPct ? Math.round(baseTotal * discountPct / 100) : 0;
+        const total = baseTotal - discAmt;
+
+        document.getElementById('pr-nights').textContent = nights + ' night' + (nights > 1 ? 's' : '');
+        document.getElementById('pr-sub').textContent = fmt(sub);
+        document.getElementById('pr-tax').textContent = fmt(tax);
+
+        if (discAmt > 0) {
+            document.getElementById('pr-disc-row').style.display = 'flex';
+            document.getElementById('pr-disc').textContent = '-' + fmt(discAmt) + ' (' + discountPct + '%)';
+        } else {
+            document.getElementById('pr-disc-row').style.display = 'none';
+        }
+        document.getElementById('pr-total').textContent = fmt(total);
+    } else {
+        ['pr-nights','pr-sub','pr-tax'].forEach(id => document.getElementById(id).textContent = '—');
+        document.getElementById('pr-disc-row').style.display = 'none';
+        document.getElementById('pr-total').textContent = 'Select dates';
+    }
+}
+
+function checkCoupon() {
+    const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+    const msg = document.getElementById('coupon-msg');
+    const pct = COUPONS[code];
+    if (pct) {
+        discountPct = pct;
+        msg.className = 'coupon-msg success';
+        msg.textContent = '✓ Coupon applied! ' + pct + '% discount.';
+        updatePrice();
+    } else {
+        discountPct = 0;
+        msg.className = 'coupon-msg error';
+        msg.textContent = '✗ Invalid code. Try AURUM10 or GRAND15.';
+        updatePrice();
+    }
+}
+
+function validateForm() {
+    const email = document.getElementById('femail').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    let valid = true;
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailErr = document.getElementById('email-error');
+    if (!emailRegex.test(email)) {
+        emailErr.style.display = 'block';
+        valid = false;
+    } else {
+        emailErr.style.display = 'none';
+    }
+
+    // Phone validation — digits, +, -, spaces only
+    const phoneRegex = /^[0-9+\-\s()]{7,15}$/;
+    const phoneErr = document.getElementById('phone-error');
+    if (!phoneRegex.test(phone)) {
+        phoneErr.style.display = 'block';
+        valid = false;
+    } else {
+        phoneErr.style.display = 'none';
+    }
+
+    return valid;
+}
+
+// Set min dates
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('fcheckin').min = today;
+document.getElementById('fcheckout').min = today;
+
+// Pre-select room from URL param
+const urlRoom = new URLSearchParams(window.location.search).get('room');
+if (urlRoom) {
+    const sel = document.getElementById('froom');
+    for (let o of sel.options) {
+        if (o.value === urlRoom) { sel.value = urlRoom; break; }
+    }
+}
+updatePrice();
+</script>
 </body>
 </html>

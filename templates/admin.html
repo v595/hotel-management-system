@@ -3,94 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard – Luxury Hotel</title>
+    <title>Admin Dashboard — The Grand Aurum</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+<nav class="navbar">
+    <a href="/" class="logo">The Grand Aurum<span>Admin Dashboard</span></a>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/rooms">Rooms</a></li>
+        <li><a href="/booking">Booking</a></li>
+        <li><a href="/admin">Dashboard</a></li>
+        <li><a href="/booking" class="nav-cta">+ New Booking</a></li>
+    </ul>
+</nav>
 
-    <nav class="navbar">
-        <a href="/" class="logo">Luxury Hotel</a>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/rooms">Rooms</a></li>
-            <li><a href="/booking">Booking</a></li>
-            <li><a href="/admin">Dashboard</a></li>
-        </ul>
-    </nav>
+<div class="admin-page">
 
-    <div class="admin-page">
-
-        <div class="admin-topbar">
-            <div>
-                <h1 class="admin-title">Hotel Dashboard</h1>
-                <p class="admin-subtitle">Manage and review all bookings</p>
-            </div>
-            <a href="/booking" class="btn">+ New Booking</a>
+    <div class="admin-topbar">
+        <div>
+            <h1 class="admin-title">Hotel Dashboard</h1>
+            <p class="admin-subtitle">Manage and review all reservations — The Grand Aurum</p>
         </div>
-
-        <div class="admin-stats">
-            <div class="admin-stat-card">
-                <div class="stat-n">{{ bookings | length }}</div>
-                <div class="stat-l">Total Bookings</div>
-            </div>
-            <div class="admin-stat-card">
-                <div class="stat-n">3</div>
-                <div class="stat-l">Room Types</div>
-            </div>
-            <div class="admin-stat-card">
-                <div class="stat-n">₹7k</div>
-                <div class="stat-l">Top Room Price</div>
-            </div>
-            <div class="admin-stat-card">
-                <div class="stat-n">24/7</div>
-                <div class="stat-l">Support</div>
-            </div>
+        <div style="display:flex;gap:10px;align-items:center">
+            <div style="font-size:11px;color:var(--text-light);background:var(--white);border:1px solid var(--border);padding:7px 13px;border-radius:var(--radius);font-weight:500" id="live-clock">—</div>
+            <a href="/booking" class="btn btn-sm">+ New Booking</a>
         </div>
-
-        <div class="table-wrap">
-
-            <div class="table-head-row">
-                <h3>All Bookings</h3>
-            </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Room</th>
-                        <th>Check In</th>
-                        <th>Check Out</th>
-                        <th>Guests</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for booking in bookings %}
-                    <tr>
-                        <td>{{ booking.id }}</td>
-                        <td>{{ booking.name }}</td>
-                        <td>{{ booking.email }}</td>
-                        <td>{{ booking.phone }}</td>
-                        <td><span class="room-badge">{{ booking.room_type }}</span></td>
-                        <td>{{ booking.checkin }}</td>
-                        <td>{{ booking.checkout }}</td>
-                        <td>{{ booking.guests }}</td>
-                        <td>
-                            <a href="/delete/{{ booking.id }}" class="delete-btn">
-                                🗑 Delete
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-
-        </div>
-
     </div>
 
+    <!-- KPI Cards -->
+    <div class="admin-stats">
+        <div class="admin-stat-card">
+            <div class="stat-icon">📋</div>
+            <div class="stat-n">{{ bookings | length }}</div>
+            <div class="stat-l">Total Bookings</div>
+            <div class="stat-trend">↑ Active reservations</div>
+        </div>
+        <div class="admin-stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-n green">{{ total_guests }}</div>
+            <div class="stat-l">Total Guests</div>
+            <div class="stat-trend" style="color:var(--green)">↑ All time</div>
+        </div>
+        <div class="admin-stat-card">
+            <div class="stat-icon">💰</div>
+            <div class="stat-n blue">
+                {% if total_revenue >= 100000 %}
+                    ₹{{ "%.2f"|format(total_revenue / 100000) }}L
+                {% else %}
+                    ₹{{ "{:,}".format(total_revenue) }}
+                {% endif %}
+            </div>
+            <div class="stat-l">Total Revenue</div>
+            <div class="stat-trend" style="color:var(--blue)">↑ All bookings</div>
+        </div>
+        <div class="admin-stat-card">
+            <div class="stat-icon">🛏</div>
+            <div class="stat-n purple">5</div>
+            <div class="stat-l">Room Types</div>
+            <div class="stat-trend" style="color:var(--text-light)">— Standard to Penthouse</div>
+        </div>
+        <div class="admin-stat-card">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-n">9.7</div>
+            <div class="stat-l">Avg. Rating</div>
+            <div class="stat-trend">↑ 0.2 pts this month</div>
+        </div>
+    </div>
+
+    <!-- UPI Info -->
+    <div style="background:linear-gradient(135deg,#E8F5E9,#C8E6C9);border:1.5px solid #66BB6A;border-radius:var(--radius-lg);padding:14px 20px;margin-bottom:22px;display:flex;align-items:center;gap:12px">
+        <div style="font-size:22px">🏦</div>
+        <div>
+            <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#2E7D32;font-weight:700;margin-bottom:2px">All Payments Received At</div>
+            <div style="font-size:15px;font-weight:700;color:#1B5E20">{{ upi_id }}</div>
+        </div>
+        <button onclick="navigator.clipboard.writeText('{{ upi_id }}').then(()=>alert('UPI ID copied!'))" style="margin-left:auto;background:#2E7D32;color:white;border:none;padding:6px 14px;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer">Copy UPI</button>
+    </div>
+
+    <!-- Bookings Table -->
+    <div class="table-wrap">
+        <div class="table-head-row">
+            <h3>All Bookings</h3>
+            <div style="display:flex;gap:8px;align-items:center">
+                <input class="table-search" type="text" placeholder="Search..." oninput="searchTable(this.value)">
+                <a href="/booking" class="btn btn-sm" style="text-decoration:none">+ New</a>
+            </div>
+        </div>
+        <table id="bookings-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Guest</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Room</th>
+                    <th>Check-In</th>
+                    <th>Check-Out</th>
+                    <th>Nights</th>
+                    <th>Guests</th>
+                    <th>Meal</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in bookings %}
+                <tr>
+                    <td style="color:var(--gold);font-weight:700">#GA-{{ b.id }}</td>
+                    <td style="font-weight:600;color:var(--text-dark)">{{ b.name }}</td>
+                    <td>{{ b.email }}</td>
+                    <td>{{ b.phone }}</td>
+                    <td><span class="room-badge">{{ b.room_type }}</span></td>
+                    <td>{{ b.checkin }}</td>
+                    <td>{{ b.checkout }}</td>
+                    <td style="text-align:center">{{ b.nights }}</td>
+                    <td style="text-align:center">{{ b.guests }}</td>
+                    <td style="font-size:11px">{{ b.meal }}</td>
+                    <td>
+                        {% if b.discount_pct > 0 %}
+                        <span style="background:rgba(40,167,69,.1);color:var(--green);border:1px solid rgba(40,167,69,.2);padding:3px 8px;border-radius:20px;font-size:9px;font-weight:700">{{ b.discount_pct }}% off</span>
+                        {% else %}
+                        <span style="color:var(--text-light);font-size:11px">—</span>
+                        {% endif %}
+                    </td>
+                    <td style="color:var(--gold);font-weight:700">₹{{ "{:,}".format(b.total) }}</td>
+                    <td><span class="status-badge status-confirmed">{{ b.status | capitalize }}</span></td>
+                    <td>
+                        <div style="display:flex;gap:5px">
+                            <a href="mailto:{{ b.email }}?subject=Booking %23GA-{{ b.id }} Update" class="delete-btn" style="background:rgba(26,110,191,.07);color:var(--blue);border-color:rgba(26,110,191,.2)">✉ Email</a>
+                            <a href="/delete/{{ b.id }}" class="delete-btn" onclick="return confirm('Delete booking for {{ b.name }}?')">🗑 Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="14" style="text-align:center;padding:42px;color:var(--text-light)">No bookings yet. <a href="/booking" style="color:var(--gold)">Create the first one →</a></td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+function searchTable(q) {
+    document.querySelectorAll('#bookings-table tbody tr').forEach(r => {
+        r.style.display = r.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
+    });
+}
+function updateClock() {
+    const now = new Date();
+    const el = document.getElementById('live-clock');
+    if (el) el.textContent = now.toLocaleTimeString('en-IN', {hour:'2-digit', minute:'2-digit', second:'2-digit'}) + ' · ' + now.toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'});
+}
+updateClock(); setInterval(updateClock, 1000);
+</script>
 </body>
 </html>

@@ -3,99 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rooms – Luxury Hotel</title>
+    <title>Rooms — The Grand Aurum</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="/" class="logo">Luxury Hotel</a>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/rooms">Rooms</a></li>
-            <li><a href="/booking">Booking</a></li>
-            <li><a href="/admin">Dashboard</a></li>
-        </ul>
-    </nav>
+<nav class="navbar">
+    <a href="/" class="logo">The Grand Aurum<span>Luxury Collection</span></a>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/rooms">Rooms</a></li>
+        <li><a href="/booking">Booking</a></li>
+        <li><a href="/admin">Dashboard</a></li>
+        <li><a href="/booking" class="nav-cta">Book Now</a></li>
+    </ul>
+</nav>
 
-    <div class="rooms-hero">
-        <div class="rooms-hero-text">
-            <p class="label">Accommodations</p>
-            <h1>Our Luxury Rooms</h1>
+<div class="rooms-hero">
+    <div class="rooms-hero-text">
+        <p class="label">Accommodations</p>
+        <h1>Our Luxury Rooms &amp; Suites</h1>
+    </div>
+</div>
+
+<div class="room-filter" style="padding-top:14px;padding-bottom:14px">
+    <span class="filter-label">Filter:</span>
+    <a href="#" class="filter-btn active" onclick="filterRooms('all',this);return false;">All Rooms</a>
+    <a href="#" class="filter-btn" onclick="filterRooms('standard',this);return false;">Standard</a>
+    <a href="#" class="filter-btn" onclick="filterRooms('premium',this);return false;">Premium</a>
+    <a href="#" class="filter-btn" onclick="filterRooms('suite',this);return false;">Suites</a>
+</div>
+
+<div class="room-container">
+
+    <!-- Classic Single -->
+    <div class="card" data-cat="standard">
+        <div class="card-image-wrap">
+            <img class="card-image" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop" alt="Classic Single Room">
+            <span class="card-badge">Available</span>
+        </div>
+        <div class="card-body">
+            <p class="card-tag">Standard · Room 101–108</p>
+            <h2>Classic Single Room</h2>
+            <p class="card-desc">A refined retreat with plush king-size bed, ergonomic workspace and rainfall shower with Acqua di Parma toiletries.</p>
+            <div class="card-price">₹2,500 <span>/ Night</span></div>
+            <p class="card-price-tax">+ ₹450 taxes &amp; fees · 28 m² · City View</p>
+            <div class="card-amenities">
+                <span class="amenity-tag">Free WiFi</span>
+                <span class="amenity-tag">AC</span>
+                <span class="amenity-tag">55" TV</span>
+                <span class="amenity-tag">Room Service</span>
+                <span class="amenity-tag">Safe</span>
+            </div>
+            <div class="card-details-row">
+                <div class="card-detail"><span class="card-detail-label">Size</span><span class="card-detail-val">28 m²</span></div>
+                <div class="card-detail"><span class="card-detail-label">Bed</span><span class="card-detail-val">King</span></div>
+                <div class="card-detail"><span class="card-detail-label">Floor</span><span class="card-detail-val">1–3</span></div>
+                <div class="card-detail"><span class="card-detail-label">View</span><span class="card-detail-val">City</span></div>
+            </div>
+            <a href="/booking?room=Classic+Single+Room" class="btn">Book This Room</a>
         </div>
     </div>
 
-    <div class="room-container">
-
-        <div class="card">
-            <div class="card-image-wrap">
-                <img class="card-image"
-                     src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop"
-                     alt="Single Room">
-            </div>
-            <div class="card-body">
-                <p class="card-tag">Standard</p>
-                <h2>Single Room</h2>
-                <div class="card-price">₹2,000 <span>/ Night</span></div>
-                <div class="card-amenities">
-                    <span class="amenity-tag">Free WiFi</span>
-                    <span class="amenity-tag">AC</span>
-                    <span class="amenity-tag">TV</span>
-                </div>
-                <a href="/booking" class="btn">Book Now</a>
-            </div>
+    <!-- Superior Double -->
+    <div class="card" data-cat="standard">
+        <div class="card-image-wrap">
+            <img class="card-image" src="https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=800&auto=format&fit=crop" alt="Superior Double Room">
+            <span class="card-badge">Available</span>
         </div>
-
-        <div class="card">
-            <div class="card-image-wrap">
-                <img class="card-image"
-                     src="https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=800&auto=format&fit=crop"
-                     alt="Double Room">
+        <div class="card-body">
+            <p class="card-tag">Comfort · Room 201–212</p>
+            <h2>Superior Double Room</h2>
+            <p class="card-desc">Spacious comfort for couples. Private balcony overlooking manicured gardens with complimentary breakfast and turndown service.</p>
+            <div class="card-price">₹4,500 <span>/ Night</span></div>
+            <p class="card-price-tax">+ ₹810 taxes &amp; fees · 42 m² · Garden View</p>
+            <div class="card-amenities">
+                <span class="amenity-tag">Balcony</span>
+                <span class="amenity-tag">AC</span>
+                <span class="amenity-tag">65" TV</span>
+                <span class="amenity-tag">Mini Bar</span>
+                <span class="amenity-tag">Breakfast</span>
             </div>
-            <div class="card-body">
-                <p class="card-tag">Comfort</p>
-                <h2>Double Room</h2>
-                <div class="card-price">₹4,000 <span>/ Night</span></div>
-                <div class="card-amenities">
-                    <span class="amenity-tag">Balcony</span>
-                    <span class="amenity-tag">AC</span>
-                    <span class="amenity-tag">TV</span>
-                </div>
-                <a href="/booking" class="btn">Book Now</a>
+            <div class="card-details-row">
+                <div class="card-detail"><span class="card-detail-label">Size</span><span class="card-detail-val">42 m²</span></div>
+                <div class="card-detail"><span class="card-detail-label">Bed</span><span class="card-detail-val">2× Queen</span></div>
+                <div class="card-detail"><span class="card-detail-label">Floor</span><span class="card-detail-val">2–4</span></div>
+                <div class="card-detail"><span class="card-detail-label">View</span><span class="card-detail-val">Garden</span></div>
             </div>
+            <a href="/booking?room=Superior+Double+Room" class="btn">Book This Room</a>
         </div>
-
-        <div class="card">
-            <div class="card-image-wrap">
-                <img class="card-image"
-                     src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop"
-                     alt="Deluxe Room">
-            </div>
-            <div class="card-body">
-                <p class="card-tag">Premium</p>
-                <h2>Deluxe Room</h2>
-                <div class="card-price">₹7,000 <span>/ Night</span></div>
-                <div class="card-amenities">
-                    <span class="amenity-tag">Pool View</span>
-                    <span class="amenity-tag">Luxury Interior</span>
-                </div>
-                <a href="/booking" class="btn">Book Now</a>
-            </div>
-        </div>
-
     </div>
 
-    <footer>
-        <div>
-            <div class="footer-logo">Luxury Hotel</div>
-            <p>© 2026 Luxury Hotel. All Rights Reserved.</p>
+    <!-- Deluxe Pool-View -->
+    <div class="card" data-cat="premium">
+        <div class="card-image-wrap">
+            <img class="card-image" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop" alt="Deluxe Pool-View Room">
+            <span class="card-badge" style="background:var(--purple);color:#fff">Popular</span>
         </div>
-        <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="/rooms">Rooms</a>
-            <a href="/booking">Booking</a>
+        <div class="card-body">
+            <p class="card-tag">Premium · Room 301–308</p>
+            <h2>Deluxe Pool-View Room</h2>
+            <p class="card-desc">Wake up to a shimmering pool vista from your private terrace. Jacuzzi for two, dedicated butler and daily curated minibar.</p>
+            <div class="card-price">₹7,500 <span>/ Night</span></div>
+            <p class="card-price-tax">+ ₹1,350 taxes &amp; fees · 58 m² · Pool View</p>
+            <div class="card-amenities">
+                <span class="amenity-tag">Pool View</span>
+                <span class="amenity-tag">Jacuzzi</span>
+                <span class="amenity-tag">Butler</span>
+                <span class="amenity-tag">Spa Access</span>
+            </div>
+            <div class="card-details-row">
+                <div class="card-detail"><span class="card-detail-label">Size</span><span class="card-detail-val">58 m²</span></div>
+                <div class="card-detail"><span class="card-detail-label">Bed</span><span class="card-detail-val">Super King</span></div>
+                <div class="card-detail"><span class="card-detail-label">Floor</span><span class="card-detail-val">3–5</span></div>
+                <div class="card-detail"><span class="card-detail-label">View</span><span class="card-detail-val">Pool</span></div>
+            </div>
+            <a href="/booking?room=Deluxe+Pool-View+Room" class="btn">Book This Room</a>
         </div>
-    </footer>
+    </div>
 
+    <!-- Junior Suite -->
+    <div class="card" data-cat="suite">
+        <div class="card-image-wrap">
+            <img class="card-image" src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop" alt="Junior Suite">
+            <span class="card-badge">Luxury</span>
+        </div>
+        <div class="card-body">
+            <p class="card-tag">Suite · Room 401–406</p>
+            <h2>Junior Suite</h2>
+            <p class="card-desc">Private lounge, walk-in closet, Italian marble bathroom with soaking tub and panoramic city skyline views from every angle.</p>
+            <div class="card-price">₹12,000 <span>/ Night</span></div>
+            <p class="card-price-tax">+ ₹2,160 taxes &amp; fees · 82 m² · Skyline View</p>
+            <div class="card-amenities">
+                <span class="amenity-tag">Living Room</span>
+                <span class="amenity-tag">Jacuzzi</span>
+                <span class="amenity-tag">Butler</span>
+                <span class="amenity-tag">Walk-in Closet</span>
+            </div>
+            <div class="card-details-row">
+                <div class="card-detail"><span class="card-detail-label">Size</span><span class="card-detail-val">82 m²</span></div>
+                <div class="card-detail"><span class="card-detail-label">Bed</span><span class="card-detail-val">Super King</span></div>
+                <div class="card-detail"><span class="card-detail-label">Floor</span><span class="card-detail-val">4–6</span></div>
+                <div class="card-detail"><span class="card-detail-label">View</span><span class="card-detail-val">Skyline</span></div>
+            </div>
+            <a href="/booking?room=Junior+Suite" class="btn">Book This Room</a>
+        </div>
+    </div>
+
+    <!-- Grand Penthouse -->
+    <div class="card" data-cat="suite">
+        <div class="card-image-wrap">
+            <img class="card-image" src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=800&auto=format&fit=crop" alt="Grand Penthouse Suite">
+            <span class="card-badge" style="background:linear-gradient(90deg,var(--gold),var(--warm2));color:#fff">Penthouse</span>
+        </div>
+        <div class="card-body">
+            <p class="card-tag">Penthouse · Level 7</p>
+            <h2>Grand Penthouse Suite</h2>
+            <p class="card-desc">Two floors, three bedrooms, private plunge pool, chef on call, dedicated car &amp; driver and breathtaking 360° city views.</p>
+            <div class="card-price">₹35,000 <span>/ Night</span></div>
+            <p class="card-price-tax">+ ₹6,300 taxes &amp; fees · 320 m² · 360° Panorama</p>
+            <div class="card-amenities">
+                <span class="amenity-tag">Private Pool</span>
+                <span class="amenity-tag">Chef</span>
+                <span class="amenity-tag">3 Bedrooms</span>
+                <span class="amenity-tag">360° Views</span>
+            </div>
+            <div class="card-details-row">
+                <div class="card-detail"><span class="card-detail-label">Size</span><span class="card-detail-val">320 m²</span></div>
+                <div class="card-detail"><span class="card-detail-label">Beds</span><span class="card-detail-val">3 Super King</span></div>
+                <div class="card-detail"><span class="card-detail-label">Floor</span><span class="card-detail-val">7 (Top)</span></div>
+                <div class="card-detail"><span class="card-detail-label">View</span><span class="card-detail-val">360°</span></div>
+            </div>
+            <a href="/booking?room=Grand+Penthouse+Suite" class="btn">Book This Room</a>
+        </div>
+    </div>
+
+    <!-- Custom Packages CTA -->
+    <div class="card" data-cat="standard premium suite" style="background:var(--cream2);display:flex;align-items:center;justify-content:center;min-height:360px">
+        <div style="text-align:center;padding:36px">
+            <div style="font-size:34px;margin-bottom:14px">🎉</div>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);margin-bottom:11px">Custom Packages</h2>
+            <p style="font-size:13px;color:var(--text-light);margin-bottom:22px;line-height:1.8">Weddings, corporate events, honeymoon &amp; long-stay deals available.</p>
+            <a href="/booking" class="btn">Get Custom Quote</a>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand"><div class="footer-logo">The Grand Aurum</div><p>A sanctuary of luxury and elegance. World-class hospitality crafted with genuine care for every guest.</p></div>
+        <div class="footer-col"><h4>Navigate</h4><a href="/">Home</a><a href="/rooms">Rooms</a><a href="/booking">Booking</a><a href="/admin">Dashboard</a></div>
+        <div class="footer-col"><h4>Experiences</h4><a>Fine Dining</a><a>Spa &amp; Wellness</a><a>Rooftop Bar</a><a>Events</a></div>
+        <div class="footer-col"><h4>Contact</h4><a>+91 98765 43210</a><a>reservations@grandaurum.com</a><a>UPI: 9079296316@kotakbank</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 The Grand Aurum Luxury Hotel. All rights reserved.</p></div>
+</footer>
+
+<script>
+function filterRooms(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.room-container .card').forEach(c => {
+        if (cat === 'all') { c.style.display = ''; return; }
+        c.style.display = (c.dataset.cat || '').includes(cat) ? '' : 'none';
+    });
+}
+</script>
 </body>
 </html>
